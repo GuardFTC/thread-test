@@ -1,12 +1,11 @@
 package com.ftc.threadtest;
 
+import cn.hutool.core.date.DateUtil;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author: 冯铁城 [17615007230@163.com]
@@ -14,68 +13,68 @@ import java.util.concurrent.TimeUnit;
  * @describe: 线程池测试
  */
 public class Executor {
-//
-//    @Test
-//    void testCachedThreadPool() {
-//
-//        //1.创建一个缓存线程池
-//        ExecutorService executor = Executors.newCachedThreadPool();
-//
-//        //2.循环执行10个任务
-//        for (int i = 0; i < 10; i++) {
-//            executor.execute(() -> System.out.println(
-//                    Thread.currentThread().getName() + " is running")
-//            );
-//        }
-//    }
-//
-//    @Test
-//    void testFixedThreadPool() {
-//
-//        //1.创建一个Fixed线程池
-//        ExecutorService executor = Executors.newFixedThreadPool(2);
-//
-//        //2.循环执行10个任务
-//        for (int i = 0; i < 10; i++) {
-//            executor.execute(() -> System.out.println(
-//                    Thread.currentThread().getName() + " is running")
-//            );
-//        }
-//    }
-//
-//    @Test
-//    void testSingleThreadPool() {
-//
-//        //1.创建一个单例线程池
-//        ExecutorService executor = Executors.newSingleThreadExecutor();
-//
-//        //2.循环执行10个任务
-//        for (int i = 0; i < 10; i++) {
-//            executor.execute(() -> System.out.println(
-//                    Thread.currentThread().getName() + " is running")
-//            );
-//        }
-//    }
-//
-//    @Test
-//    @SneakyThrows(InterruptedException.class)
-//    void testScheduledThreadPool() {
-//
-//        //1.创建一个定时线程池
-//        ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
-//
-//        //2.循环执行10个任务
-//        for (int i = 1; i <= 5; i++) {
-//
-//            //3.定时执行任务
-//            executor.schedule(() -> System.out.println(
-//                    Thread.currentThread().getName() + " is running.Date is " + DateUtil.now()
-//            ), i, TimeUnit.SECONDS);
-//        }
-//
-//        //3.睡一会，确保线程池任务执行完成
-//        TimeUnit.SECONDS.sleep(5);
-//    }
+
+    @Test
+    void testCachedThreadPool() {
+
+        //1.创建一个缓存线程池
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        //2.循环执行10个任务
+        for (int i = 0; i < 10; i++) {
+            executor.execute(() -> System.out.println(
+                    Thread.currentThread().getName() + " is running")
+            );
+        }
+    }
+
+    @Test
+    void testFixedThreadPool() {
+
+        //1.创建一个Fixed线程池
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        //2.循环执行10个任务
+        for (int i = 0; i < 10; i++) {
+            executor.execute(() -> System.out.println(
+                    Thread.currentThread().getName() + " is running")
+            );
+        }
+    }
+
+    @Test
+    void testSingleThreadPool() {
+
+        //1.创建一个单例线程池
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        //2.循环执行10个任务
+        for (int i = 0; i < 10; i++) {
+            executor.execute(() -> System.out.println(
+                    Thread.currentThread().getName() + " is running")
+            );
+        }
+    }
+
+    @Test
+    @SneakyThrows(InterruptedException.class)
+    void testScheduledThreadPool() {
+
+        //1.创建一个定时线程池
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
+
+        //2.循环执行10个任务
+        for (int i = 1; i <= 5; i++) {
+
+            //3.定时执行任务
+            executor.schedule(() -> System.out.println(
+                    Thread.currentThread().getName() + " is running.Date is " + DateUtil.now()
+            ), i, TimeUnit.SECONDS);
+        }
+
+        //3.睡一会，确保线程池任务执行完成
+        TimeUnit.SECONDS.sleep(5);
+    }
 
     @Test
     void testCustomThreadPool() {
