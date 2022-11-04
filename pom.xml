@@ -47,6 +47,13 @@
             <artifactId>hutool-all</artifactId>
             <version>5.8.9</version>
         </dependency>
+
+        <!--线程工厂Build类-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version>
+        </dependency>
     </dependencies>
 
     <build>
