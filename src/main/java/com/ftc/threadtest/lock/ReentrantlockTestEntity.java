@@ -149,4 +149,26 @@ public class ReentrantlockTestEntity {
             CLASS_LOCK.unlock();
         }
     }
+
+    /**
+     * 控制台输出线程执行信息
+     */
+    public void consoleInfoV4() {
+
+        //1.尝试获取锁
+        CLASS_LOCK.lock();
+        try {
+
+            //2.控制台输出线程运行信息
+            System.out.println(Thread.currentThread().getName() + " is running on " + DateUtil.now());
+
+            //3.控制台打印，目前是否有线程正在阻塞
+            System.out.println("Whether there is thread blocking:" + CLASS_LOCK.hasQueuedThreads());
+
+            //4.控制台打印，当前线程是否正在阻塞
+            System.out.println("This thread is blocking:" + CLASS_LOCK.hasQueuedThread(Thread.currentThread()));
+        } finally {
+            CLASS_LOCK.unlock();
+        }
+    }
 }

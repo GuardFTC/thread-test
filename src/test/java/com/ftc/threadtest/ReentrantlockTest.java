@@ -78,4 +78,24 @@ public class ReentrantlockTest {
         thread2.join();
         thread3.join();
     }
+
+    @Test
+    @SneakyThrows(InterruptedException.class)
+    void testHasQueuedThreads() {
+        ReentrantlockTestEntity reentrantlockTestEntity = new ReentrantlockTestEntity();
+
+        Thread thread1 = new Thread(reentrantlockTestEntity::consoleInfoV4);
+        Thread thread2 = new Thread(reentrantlockTestEntity::consoleInfoV4);
+
+        thread1.start();
+        thread2.start();
+
+        thread1.join();
+        thread2.join();
+    }
+
+    @Test
+    void testIsFair() {
+        System.out.println(ReentrantlockTestEntity.CLASS_LOCK.isFair());
+    }
 }
