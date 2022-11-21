@@ -162,51 +162,60 @@ public class CountDownLatchTest {
 
     @Test
     void testCountDownLatchOneToMore() {
+
+        //1.创建士兵线程计数器
         CountDownLatch countDownLatch = new CountDownLatch(1);
+
+        //2.创建指挥官线程计数器
         CountDownLatch mainCountDownLatch = new CountDownLatch(3);
 
+        //3.创建士兵线程1，等待炸碉堡。炸完碉堡后冲锋
         new Thread(() -> {
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println(Thread.currentThread().getName() + ":冲啊战士们");
+            System.out.println(Thread.currentThread().getName() + ":冲啊！！！！！");
             mainCountDownLatch.countDown();
         }).start();
 
+        //4.创建士兵线程2，等待炸碉堡。炸完碉堡后冲锋
         new Thread(() -> {
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println(Thread.currentThread().getName() + ":冲啊战士们");
+            System.out.println(Thread.currentThread().getName() + ":冲啊！！！！！");
             mainCountDownLatch.countDown();
         }).start();
 
+        //5.创建士兵线程3，等待炸碉堡。炸完碉堡后冲锋
         new Thread(() -> {
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println(Thread.currentThread().getName() + ":冲啊战士们");
+            System.out.println(Thread.currentThread().getName() + ":冲啊！！！！！");
             mainCountDownLatch.countDown();
         }).start();
 
+        //5.创建炸碉堡线程
         new Thread(() -> {
             System.out.println(Thread.currentThread().getName() + ":我来炸碉堡！");
             countDownLatch.countDown();
             System.out.println(Thread.currentThread().getName() + ":炸完了！");
         }).start();
 
+        //6.指挥官线程阻塞，等待士兵冲锋完毕
         try {
             mainCountDownLatch.await();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(Thread.currentThread().getName() + ":演练完毕");
+        System.out.println(Thread.currentThread().getName() + ":我们胜利了！！！！");
     }
 
     /**
